@@ -1,0 +1,100 @@
+{
+   "company": "Tech Solutions Ltd",
+   "founded_year": 2010,
+   "is_active": true,
+   "branches": [
+      "New York",
+      "London",
+      "Bangalore"
+   ],
+   "people": [
+      {
+         "id": 1,
+         "firstname": "Joe",
+         "lastname": "Jackson",
+         "gender": "M",
+         "age": 29,
+         "phno": null,
+         "licence": true,
+         "salary": 55000.5,
+         "skills": [
+            "Python",
+            "Django",
+            "Docker"
+         ],
+         "address": {
+            "street": "12th Avenue",
+            "city": "New York",
+            "zipcode": 10001
+         },
+         "projects": [],
+         "performance_scores": [
+            88,
+            92,
+            79
+         ]
+      },
+      {
+         "id": 2,
+         "firstname": "Emma",
+         "lastname": "Watson",
+         "gender": "F",
+         "age": 34,
+         "phno": "123-456-7890",
+         "licence": false,
+         "salary": 72000,
+         "skills": [
+            "Java",
+            "Spring Boot"
+         ],
+         "address": {
+            "street": "Baker Street",
+            "city": "London",
+            "zipcode": "NW1 6XE"
+         },
+         "projects": [
+            "Banking API",
+            "Payment Gateway"
+         ],
+         "performance_scores": [
+            91,
+            89,
+            95
+         ]
+      },
+      {
+         "id": 3,
+         "firstname": "Raj",
+         "lastname": "Sharma",
+         "gender": "M",
+         "age": 26,
+         "phno": null,
+         "licence": true,
+         "salary": 48000,
+         "skills": [],
+         "address": {
+            "street": "MG Road",
+            "city": "Bangalore",
+            "zipcode": 560001
+         },
+         "projects": [
+            "AI Chatbot"
+         ],
+         "performance_scores": [
+            85,
+            87,
+            90
+         ]
+      }
+   ],
+   "metadata": {
+      "total_employees": 3,
+      "remote_work_supported": true,
+      "departments": [
+         "Engineering",
+         "HR",
+         "Finance"
+      ],
+      "null_field_example": null
+   }
+}

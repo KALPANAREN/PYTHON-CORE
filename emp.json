@@ -1,0 +1,13 @@
+{
+    "people":[
+        {
+            "firstname":"Joe",
+            "lastname":"Jackson",
+            "gender":"M",
+            "age":29,
+            "phno":null,
+            "licence":true
+
+        }
+    ]
+}
