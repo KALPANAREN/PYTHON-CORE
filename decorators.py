@@ -252,3 +252,42 @@ def positive_only(func):
 def area(w, h):
     return w * h
 print(area(5,-4))
+
+######## STACKING DECORATOR ###########
+"""
+while calling ,if @require_auth,@log_call is the order then first log_call  wrapper is hit and next require_auth wrapper is hit
+But execution starts from require_auth wrapper and executes till functional call and then enters into
+log_call wrapper and executes function here.
+"""
+from functools import wraps
+def require_auth(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        user = kwargs.get("user")
+        if user != "admin":
+            raise PermissionError("Not authorized")
+        print("Auth check passed")
+        return func(*args, **kwargs)
+    return wrapper
+
+def log_call(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        result = func(*args, **kwargs)
+        print(f"{func.__name__} finished")
+        return result
+    return wrapper
+
+@require_auth
+@log_call
+def delete_user(user, user_id):
+    print(f"Deleting user {user_id}")
+delete_user(user="admin", user_id=42)
+
+# swapping the decorators
+@log_call
+@require_auth
+def delete_user(user, user_id):
+    print(f"Deleting user {user_id}")
+delete_user(user="admin", user_id=42)

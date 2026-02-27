@@ -35,7 +35,7 @@ print(sa)
 #group anagrams
 
 s1 = ["eat","tea","tan","ate","nat","bat"]
-s2 = []
+s2 = {}
 for str in s1:
     sorted_str = ''.join(sorted(str))
     if sorted_str not in s1:

@@ -1,0 +1,21 @@
+# Dependency folders (Massive amounts of tiny files)
+node_modules/
+jspm_packages/
+env/
+venv/
+.venv/
+bin/
+obj/
+
+# Operating System files (Useless metadata)
+.DS_Store
+Thumbs.db
+
+# Log files and local databases
+*.log
+*.sqlite
+
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
