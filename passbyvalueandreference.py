@@ -1,13 +1,15 @@
-# pass by value
+# pass by value(means passing immutables)
 
-x = 20
+x = 2000
+print(id(x))
 def pass_by_value(x):
-    x = x+46
+    x = x+46588
     print(x)
+    print(id(x))
 pass_by_value(x)
 print(x)
 
-# pass by reference
+# pass by reference( means passing mutables)
 
 l1 = [2,3,4,5]
 def pass_by_ref(l1):

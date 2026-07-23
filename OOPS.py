@@ -1,4 +1,5 @@
 # basic class definition and instance variables and methods
+
 class Employee():
     hike_para = 0.1
     def __init__(self,name:str,age,salary):
@@ -305,6 +306,7 @@ class D(B, C):
     pass
 d = D()
 d.who()
+print(D.mro()) # [<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>]
 
 # mro in case of super()
 """
@@ -331,3 +333,71 @@ class D(B, C):
     pass
 d = D()
 d.greet()
+
+######### ABSTRACT CLASS    ################
+
+# let us first see a normal use case
+class Vehicle:
+
+    def start(self):
+        pass
+    def stop(self):
+        pass
+
+class Car(Vehicle):
+    pass
+
+c = Car()
+c.start() # nothing happens and no error technically but we used a method that does nothing..meaningless
+
+# using abstract 
+from abc import ABC, abstractmethod
+class Vehicle(ABC):
+
+    @abstractmethod
+    def start(self):
+        """
+        ABC with abstractmethod enforces the child class to use the method. If we don't mention the child(ABC)
+        the abstract method doesn't make any meaning
+        """
+        pass
+
+class Car(Vehicle):
+    pass
+
+c= Car() # raise an error since we have not used start method in the Car. ABC with abstractmethod enforces the child class to use the method
+
+from abc import ABC, abstractmethod
+
+class PaymentGateway(ABC):
+
+    @abstractmethod
+    def pay(self, amount):
+        pass
+
+    @abstractmethod
+    def refund(self, amount):
+        pass
+
+class Razorpay(PaymentGateway):
+
+    def pay(self, amount):
+        print("Razorpay payment")
+
+    def refund(self, amount):
+        print("Refund")
+
+# child can override abstact method similar to normal methods
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+
+    @abstractmethod
+    def speak(self):
+        print("Preparing to speak...")
+
+class Dog(Animal):
+
+    def speak(self):
+        super().speak()
+        print("Woof")
