@@ -1,22 +1,19 @@
-"""
-
-"""
 nums = [1, 2, 3]
 
 # Adding elements
 nums.append(4)              # [1, 2, 3, 4]
 nums.extend([5, 6])         # [1, 2, 3, 4, 5, 6]
-nums.insert(1, 10)          # [1, 10, 2, 3, 4, 5, 6]
+nums.insert(1, [10,24])          # [1, [10,24], 2, 3, 4, 5, 6]
 
 # Removing elements
-nums.remove(10)             # removes first occurrence
-last = nums.pop()           # removes & returns last element
+nums.remove(10)             # removes first occurrence of 10
+last = nums.pop()           # removes last element from the list
 nums.pop(0)                 # removes element at index 0
 nums.clear()                # []
 
 # Searching
-nums.index(4)               # 2
-nums.count(1)               # 2
+nums.index(4)               # gives the position of number 4 
+nums.count(1)               # gives the count of 1 in list
 
 # Sorting & reversing
 nums.sort()                 # in-place sort
@@ -30,6 +27,31 @@ fruits = [
 ]
 """
 step should always be positive number
+list[start : stop : step]
+Positive step (+1) → move left to right. Therefore, start should be before stop.
+Negative step (-1) → move right to left. Therefore, start should be after stop.
+fruits = [
+    "Apple",       #  0   -20
+    "Banana",      #  1   -19
+    "Orange",      #  2   -18
+    "Mango",       #  3   -17
+    "Pineapple",   #  4   -16
+    "Grapes",      #  5   -15
+    "Strawberry",  #  6   -14
+    "Blueberry",   #  7   -13
+    "Watermelon",  #  8   -12
+    "Papaya",      #  9   -11
+    "Kiwi",        # 10   -10
+    "Cherry",      # 11   -9
+    "Peach",       # 12   -8
+    "Pear",        # 13   -7
+    "Plum",        # 14   -6
+    "Guava",       # 15   -5
+    "Pomegranate", # 16   -4
+    "Lychee",      # 17   -3
+    "Fig",         # 18   -2
+    "Coconut"      # 19   -1
+]
 """
 print(fruits[2:10]) #['Orange', 'Mango', 'Pineapple', 'Grapes', 'Strawberry', 'Blueberry', 'Watermelon', 'Papaya']
 print(fruits[2:-7]) #['Orange', 'Mango', 'Pineapple', 'Grapes', 'Strawberry', 'Blueberry', 'Watermelon', 'Papaya', 'Kiwi', 'Cherry', 'Peach']
@@ -62,12 +84,14 @@ mixed = [1, "Hello", 3.14, True]
 
 # REMOVING ITEMS WHILE ITERATING
 
-nums = [1, 2, 3, 4]
+nums = [1, 2, 4, 4]
 for n in nums:
     if n % 2 == 0:
         nums.remove(n)
-
-print(nums)   # [1, 3, 4] ❌
+"""
+this doesn't work since after removal of 2, the first 4 shifts 
+to index 1 whose iteration whose iteration is already done """
+print(nums)   # [1, 4] ❌
  
 nums = [n for n in nums if n % 2 != 0] # CORRECT WAY
 
@@ -76,10 +100,10 @@ for n in nums[:]:
     if n % 2 == 0:
         nums.remove(n) 
 
-# SLICING CREATES A NEW LIST
+# SLICING CREATES A shallow copy
 
 a = [1, 2, 3, 4]
-b = a[:]
+b = a[:] # shallow copy is created
 b.append(5)
 print(a)   # [1, 2, 3, 4] ✔️
 
@@ -97,14 +121,14 @@ b = a
 
 a += [3]
 print(a)  # [1, 2, 3]
-print(b)  # [1, 2, 3]  😮
+print(b)  # [1, 2, 3]  
 
 a = [1, 2]
 b = a
 
 a = a + [3]
 print(a)  # [1, 2, 3]
-print(b)  # [1, 2]     😮
+print(b)  # [1, 2]     
 
 # SLICE ARRANGEMENT
 a = [1, 2, 3, 4]
