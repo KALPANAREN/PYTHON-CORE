@@ -114,7 +114,7 @@ if []:
 if [1]:
     print("will run")
 
-# += vs +
+# difference between += and +
 
 a = [1, 2]
 b = a
@@ -203,6 +203,7 @@ l3 = [sentence for sentence in l1 if sum(word in sentence for word in l2 )==1]
 ######### FILTER + LAMBDA
 
 # keep users Have "Python" in skills AND Have experience ≥ 3 AND are active
+
 users = [
     {"name": "Naren", "skills": ["Python", "FastAPI"], "exp": 4, "active": True},
     {"name": "Ravi", "skills": ["Java"], "exp": 5, "active": True},
@@ -212,6 +213,7 @@ users = [
 
 res = list(filter(lambda user:"Python" in user['skills'] and user['exp']>=3 and user['active']==True,users))
 print(res)
+
 # filter sentences with only one word from keywords
 
 sentences = ["python is powerful","java is fast","python and java","c++ is efficient"]
@@ -232,6 +234,7 @@ res = list(filter(lambda lst:sum(lst)>20 and any(num%2==0 for num in lst),data))
 print(res)
 
 # condition based filtering
+
 conditions = {
     "min_exp": 3,
     "required_skill": "Python"
@@ -256,11 +259,8 @@ products = [
 ]
 
 result = list(filter(
-    lambda p: p["price"] < 5000
-              and p["rating"] >= 4
-              and p["category"] == "electronics",
-    products
-))
+    lambda p: p["price"] < 5000 and p["rating"] >= 4 and p["category"] == "electronics", 
+    products))
 
 print(result)
 
@@ -274,10 +274,11 @@ def prime(n):
         return n
 
 nums = [14, 23, 29, 31, 44, 57, 82]
-prime_sum_nums = list(filter(lambda num:prime(sum(int(ch) for ch in str(num))),nums))
-print(prime_sum_nums)
+digit_sum_prime_nums = list(filter(lambda num:prime(sum(int(ch) for ch in str(num))),nums))
+print(digit_sum_prime_nums)
 
 # for best logic, replace the prime logic as below
+
 def prime(n):
     if n<2:
         return False

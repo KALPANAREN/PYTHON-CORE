@@ -13,7 +13,6 @@ def process_dec(func):
 
 @process_dec
 def process_data():
-
     print("Processing data")
 
 process_data()

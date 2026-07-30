@@ -13,7 +13,7 @@ labels = ["Even" if x % 2 == 0 else "Odd" for x in range(5)] # if-else is placed
 # NESTED LIST COMP
 """
 Nested comprehensions are read in the same order 
-as they would be written in a standard for loop (top to bottom)
+as they would be written in a standard for-loop (top to bottom)
 """
 matrix = [[1, 2], [3, 4], [5, 6]]
 
@@ -67,9 +67,7 @@ odd numbers are cubed
 nums = range(-10, 11)
 pos_even_odd = [num**2 if num%2==0 else num**3 for num in nums if num > 0]
 
-"""Create a flat list of:
-absolute values
-only for numbers divisible by 3"""
+# Create a flat list of: absolute values only for numbers divisible by 3
 
 matrix = [[1, -2, 3], [-4, 5, -6], [7, -8, 9]]
 l = [abs(ele) for sub in matrix for ele in sub if abs(ele)%3==0]
