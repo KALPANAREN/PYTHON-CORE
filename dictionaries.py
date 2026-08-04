@@ -1,29 +1,41 @@
-# creating an empty dict
-empty_dict = dict()
-print(empty_dict)
+# common ways to create dictionary
+d1 = {}                          # empty dict
+d2 = dict()                      # empty dict
+d3 = {"a": 1, "b": 2}
+d4 = dict(a=1, b=2)
+d5 = dict([("a", 1), ("b", 2)])
 
-empty_dict1 = {}
-print(empty_dict1)
+# sample dict
 
 emp = {"name":"Naren","age":32,"band":"TE02","name":"Kalpa"}
-print(emp) #{'name': 'Kalpa', 'age': 32, 'band': 'TE02'} # though we defined duplicate key it's removed in the output
+print(emp) #{'name': 'Kalpa', 'age': 32, 'band': 'TE02'} # we created dict with "name" key twice
+
+# accessing the elements 
+
 print(emp.get('name'))
 print(emp.get("salary")) #None
 print(emp.get("salary",100000)) #100000
+print(emp) # {'name': 'Kalpa', 'age': 32, 'band': 'TE02'} # no change in dictionary with get
+
+# adding new key-value pair
+
 emp["location"] ="India"
-print(emp) #{'name': 'Kalpa', 'age': 32, 'band': 'TE02', 'location': 'India'}
+emp.update({"domain": "dev", "speciality": "LLM"})
+
+# methods of access
 
 keys = emp.keys() #dict_keys(['name', 'age', 'band', 'location'])
 values = emp.values() #dict_values(['Kalpa', 32, 'TE02', 'India'])
 items = emp.items() # dict_items([('name', 'Kalpa'), ('age', 32), ('band', 'TE02'), ('location', 'India')])
 
-
 # copy
+
 emp1 = emp
 emp["name"] = "Narendar"
 print(emp,emp1) # both are same since memory is same
 
 # shallow copy
+
 emp1 = emp.copy()
 emp1["name"] = "suryaprakash"
 print(emp1,emp) # different since memory is different
@@ -49,17 +61,12 @@ for name,data in nested_dict.items():
 
     
 # merge two dictionaries
+
 merge_dict = {**emp,**nested_dict}
 print(merge_dict)
 
-# common ways to create dictionary
-d1 = {}                          # empty dict
-d2 = dict()                      # empty dict
-d3 = {"a": 1, "b": 2}
-d4 = dict(a=1, b=2)
-d5 = dict([("a", 1), ("b", 2)])
-
 # valid keys
+
 d = {
     1: "int",
     3.14: "float",
@@ -68,14 +75,17 @@ d = {
 }
 
 # invalid keys
-d = {[1, 2]: "list"}    # TypeError since keys should be immutable but we mentioned a list here so error
-d = {{1: 2}: "dict"}   # TypeError
+
+d = {[1, 2]: "abc"}    # TypeError since keys should be immutable but we mentioned a list here so error
+d = {{1: 2}: "xyz"}   # TypeError
 
 # tricky area
 d = {(1, 2): "ok"}      # Works
 d = {([1, 2]): "no"}   # Error
 
 #update
+
+d = {"a": 1, "b": 2}
 d.update({"c": 3, "d": 4})
 
 # removing element
@@ -83,7 +93,7 @@ d = {"a": 1, "b": 2, "c": 3}
 
 d.pop("a")          # removes 'a'
 d.popitem()         # removes LAST inserted item
-del d["b"]          # deletes key
+del d["b"]          # deletes key-value pair for b
 d.clear()           # empties dictionary
 
 d.pop("x")          # KeyError
@@ -93,6 +103,7 @@ d.pop("x", 0)       # Safe, returns 0
 # EXCERSICE
 
 # print emma's marks
+
 students = {
     "s1": {"name": "John", "marks": 85},
     "s2": {"name": "Emma", "marks": 92}
@@ -102,22 +113,25 @@ for student in students:
     if students[student]["name"]=="Emma":
         print(students[student]["marks"])
 
-# change the dictionary as per marks order
-marks = {"John": 85, "Emma": 92, "Ryan": 78}
-desc_marks = sorted(marks.values(),reverse=True)
-new_dict = {}
-for mark in desc_marks:
-    for key in marks.keys():
-        new_dict[mark]=key
-print(new_dict)              # {92: 'Ryan', 85: 'Ryan', 78: 'Ryan'}
+# change the dictionary structure keeping the marks as keys in descending order
+
+marks_dict = {"John": 85, "Emma": 92, "Ryan": 78}
+names = marks_dict.keys()
+marks = marks_dict.values()
+dict1 = dict((zip(marks,names)))
+dict2 = {}
+for mark in sorted(dict1.keys()):
+    if mark in dict1:
+        dict2[mark]=dict1[mark]
+print(dict2)            # {92: 'Ryan', 85: 'Ryan', 78: 'Ryan'}
 
 
 # Group Words by Length
 
 words = ["apple", "bat", "car", "elephant", "dog", "ant"]
-output = {3: ['bat', 'car', 'dog', 'ant'], 5: ['apple'], 8: ['elephant']}
+# output = {3: ['bat', 'car', 'dog', 'ant'], 5: ['apple'], 8: ['elephant']}
 
-lengths = sorted(set([len(word) for word in words]))
+lengths = sorted(set(len(word) for word in words))
 output = {length:list() for length in lengths} # length:[] is also fine
 
 for length in output:
@@ -129,6 +143,7 @@ print(output)
 # group words by first character
 
 words = ["apple", "ant", "banana", "bat", "cat", "car"]
+# output = {'a': ['apple', 'ant'], 'b': ['banana', 'bat'], 'c': ['cat', 'car']}
 output = {word[0]:list() for word in words}
 for key in output:
     for word in words:
@@ -139,6 +154,7 @@ print(output)
 # group words by vowels and consonants in them
 
 words = ["apple", "english", "myth", "rhythm", "cat", "car","crypt"]
+# output = {'vowels': ['apple', 'english', 'cat', 'car'], 'consts': ['myth', 'rhythm', 'crypt']}
 output = {"vowels":list(), "consts":list()}
 
 exp = [output["vowels"].append(word) if any(ch in "aeiou" for ch in word) else

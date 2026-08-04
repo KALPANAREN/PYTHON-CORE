@@ -17,9 +17,9 @@ def process_data():
 
 process_data()
 
-# CREATE A DECORATOR TO RETURN A VALUE OF INPUTS
+# CREATE A DECORATOR TO RETURN the addition of inputs
 
-def value_dec(func):
+def sum_dec(func):
     @wraps(func)
     def wrapper(*args,**kwargs):
         print(f"Starting {func.__name__}...")
@@ -33,7 +33,7 @@ def value_dec(func):
         return func(a,b)
     return wrapper
             
-@value_dec            
+@sum_dec            
 def add(a, b):
     return a + b
 
@@ -99,8 +99,8 @@ hi()
 # CREATE REPETETIVE DECORATOR
 
 from functools import wraps
+
 def repeat(times):
-    
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -113,19 +113,17 @@ def repeat(times):
 
 @repeat(3)
 def greet():
-    "it is a printing function"
     print("Hi")
 greet()
 
 # CREATE A FRAMEWORK BASED DECORATOR FOR DELETING A USER
 
 from functools import wraps
-
+from dataclasses import dataclass
+@dataclass
 class UserRole:
-    def __init__(self,name,role):
-        self.username = name
-        self.role = role
-
+    username:str
+    role:str
 current_user = UserRole("Narendar","admin")
 
 def role_decorator(req_role):
